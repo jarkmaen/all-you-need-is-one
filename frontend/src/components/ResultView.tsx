@@ -9,12 +9,12 @@ const ResultView = () => {
             <div
                 className={`border-4 ${
                     isCorrect ? "border-green-500" : "border-red-500"
-                } rounded-xl`}
+                } overflow-hidden rounded-xl`}
             >
                 <div
                     className={`${
                         isCorrect ? "bg-green-600" : "bg-red-600"
-                    } flex font-bold items-center justify-center p-4 rounded-t-xl space-x-3 text-white text-xl 
+                    } flex font-bold items-center justify-center p-4 space-x-3 text-white text-xl 
                   `}
                 >
                     {isCorrect ? (
