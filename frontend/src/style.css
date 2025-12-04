@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@font-face {
+    font-display: swap;
+    font-family: "Spline Sans";
+    font-style: normal;
+    font-weight: 300 700;
+    src: url("./assets/fonts/SplineSans-VariableFont_wght.woff2")
+        format("woff2");
+}
+
+@theme {
+    --font-spline-sans: "Spline Sans", sans-serif;
+}
