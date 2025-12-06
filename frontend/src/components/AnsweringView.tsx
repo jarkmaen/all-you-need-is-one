@@ -1,4 +1,10 @@
-const AnsweringView = () => {
+import { GameState } from "../types";
+
+type Props = {
+    setGameState: React.Dispatch<React.SetStateAction<GameState>>;
+};
+
+const AnsweringView = ({ setGameState }: Props) => {
     return (
         <>
             <input
@@ -7,7 +13,10 @@ const AnsweringView = () => {
                 type="text"
             />
             <div className="flex space-x-4">
-                <button className="bg-indigo-600 cursor-pointer flex-1 font-medium hover:bg-indigo-700 py-3 rounded-lg shadow-md text-white transition">
+                <button
+                    className="bg-indigo-600 cursor-pointer flex-1 font-medium hover:bg-indigo-700 py-3 rounded-lg shadow-md text-white transition"
+                    onClick={() => setGameState(GameState.RESULT)}
+                >
                     Submit answer
                 </button>
                 <button className="bg-white border border-gray-300 cursor-pointer flex-1 font-medium hover:bg-gray-100 py-3 rounded-lg shadow-sm text-gray-700 transition">

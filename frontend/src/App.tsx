@@ -3,9 +3,11 @@ import Header from "./components/Header";
 import PlayButton from "./components/PlayButton";
 import ResultView from "./components/ResultView";
 import Settings from "./components/Settings";
+import { GameState } from "./types";
 import { useState } from "react";
 
 const App = () => {
+    const [gameState, setGameState] = useState<GameState>(GameState.ANSWERING);
     const [showSettings, setShowSettings] = useState(false);
 
     return (
@@ -14,8 +16,12 @@ const App = () => {
                 <Header setShowSettings={setShowSettings} />
                 {showSettings && <Settings />}
                 <PlayButton />
-                <AnsweringView />
-                <ResultView />
+                {gameState === GameState.ANSWERING && (
+                    <AnsweringView setGameState={setGameState} />
+                )}
+                {gameState === GameState.RESULT && (
+                    <ResultView setGameState={setGameState} />
+                )}
             </div>
         </div>
     );
