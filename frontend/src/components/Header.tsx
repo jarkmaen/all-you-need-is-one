@@ -1,6 +1,10 @@
 import { Settings, Zap } from "lucide-react";
 
-const Header = () => {
+type Props = {
+    setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Header = ({ setShowSettings }: Props) => {
     return (
         <div className="border-b border-gray-200 flex items-start justify-between pb-4">
             <div>
@@ -16,7 +20,10 @@ const Header = () => {
                     <Zap className="text-indigo-600" size={16} />
                     <span>Streak: 0</span>
                 </div>
-                <button className="cursor-pointer hover:bg-gray-200 p-2 rounded-full text-gray-700 transition">
+                <button
+                    className="cursor-pointer hover:bg-gray-200 p-2 rounded-full text-gray-700 transition"
+                    onClick={() => setShowSettings((prev) => !prev)}
+                >
                     <Settings size={20} />
                 </button>
             </div>

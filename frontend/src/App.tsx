@@ -3,13 +3,16 @@ import Header from "./components/Header";
 import PlayButton from "./components/PlayButton";
 import ResultView from "./components/ResultView";
 import Settings from "./components/Settings";
+import { useState } from "react";
 
 const App = () => {
+    const [showSettings, setShowSettings] = useState(false);
+
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="bg-white max-w-xl p-6 rounded-xl shadow-xl space-y-4 w-full">
-                <Header />
-                <Settings />
+                <Header setShowSettings={setShowSettings} />
+                {showSettings && <Settings />}
                 <PlayButton />
                 <AnsweringView />
                 <ResultView />
