@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 import ResultView from "./components/ResultView";
 import Settings from "./components/Settings";
 import type { Song } from "./types";
-import { GameState } from "./types";
+import { GameState, Outcome } from "./types";
 import { getRandomSong } from "./utils";
 import { useRef, useState } from "react";
 
@@ -14,8 +14,8 @@ const App = () => {
     const [currentSong, setCurrentSong] = useState<Song>(getRandomSong());
     const [gameState, setGameState] = useState<GameState>(GameState.ANSWERING);
     const [isBuffering, setBuffering] = useState(false);
-    const [isCorrect, setCorrect] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
+    const [outcome, setOutcome] = useState<Outcome>(Outcome.INCORRECT);
     const [showSettings, setShowSettings] = useState(false);
     const [streak, setStreak] = useState(0);
 
@@ -28,9 +28,9 @@ const App = () => {
     const handleNext = () => {
         handleEnd();
         setAnswer("");
-        setCorrect(false);
         setCurrentSong(getRandomSong());
         setGameState(GameState.ANSWERING);
+        setOutcome(Outcome.INCORRECT);
     };
 
     const handlePlay = () => {
@@ -56,11 +56,19 @@ const App = () => {
         }
     };
 
-    const handleSubmit = () => {
-        if (answer.trim().toLowerCase() === currentSong.title.toLowerCase()) {
-            setCorrect(true);
+    const handleSubmit = (giveUp: boolean) => {
+        const correct =
+            answer.trim().toLowerCase() === currentSong.title.toLowerCase() &&
+            !giveUp;
+
+        if (correct) {
+            setOutcome(Outcome.CORRECT);
             setStreak((s) => s + 1);
         } else {
+            if (giveUp) {
+                setOutcome(Outcome.GIVE_UP);
+            }
+
             setStreak(0);
         }
 
@@ -101,7 +109,7 @@ const App = () => {
                     <ResultView
                         currentSong={currentSong}
                         handleNext={handleNext}
-                        isCorrect={isCorrect}
+                        outcome={outcome}
                     />
                 )}
             </div>

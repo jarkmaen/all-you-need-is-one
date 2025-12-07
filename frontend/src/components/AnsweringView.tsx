@@ -4,7 +4,7 @@ import type { Song } from "../types";
 
 type Props = {
     answer: string;
-    handleSubmit: () => void;
+    handleSubmit: (giveUp: boolean) => void;
     isPlaying: boolean;
     setAnswer: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -56,14 +56,14 @@ const AnsweringView = ({
                 <button
                     className="bg-indigo-600 cursor-pointer disabled:bg-indigo-300 disabled:cursor-not-allowed flex-1 font-medium hover:bg-indigo-700 py-3 rounded-lg shadow-md text-white"
                     disabled={answer.length < 1}
-                    onClick={handleSubmit}
+                    onClick={() => handleSubmit(false)}
                 >
                     Submit answer
                 </button>
                 <button
                     className="bg-white border border-gray-300 cursor-pointer disabled:cursor-not-allowed disabled:hover:bg-white disabled:opacity-50 flex-1 font-medium hover:bg-gray-100 py-3 rounded-lg shadow-sm text-gray-700"
                     disabled={isPlaying}
-                    onClick={handleSubmit}
+                    onClick={() => handleSubmit(true)}
                 >
                     Give up
                 </button>

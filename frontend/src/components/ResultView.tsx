@@ -1,18 +1,30 @@
 import type { Song } from "../types";
 import { albumNameCoverMap } from "../constants/albumNameCoverMap";
 import { CheckCircle, SkipForward, XCircle } from "lucide-react";
+import { Outcome } from "../types";
 import { useState } from "react";
 
 type Props = {
     currentSong: Song;
     handleNext: () => void;
-    isCorrect: boolean;
+    outcome: Outcome;
 };
 
-const ResultView = ({ currentSong, handleNext, isCorrect }: Props) => {
+const ResultView = ({ currentSong, handleNext, outcome }: Props) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
+    const isCorrect = outcome === Outcome.CORRECT;
     const src = albumNameCoverMap[currentSong.album];
+
+    const getMessage = () => {
+        if (outcome === Outcome.GIVE_UP) {
+            return "The answer is:";
+        } else if (isCorrect) {
+            return "Correct! The answer is:";
+        } else {
+            return "Incorrect. The answer is:";
+        }
+    };
 
     return (
         <>
@@ -32,9 +44,7 @@ const ResultView = ({ currentSong, handleNext, isCorrect }: Props) => {
                     ) : (
                         <XCircle size={28} />
                     )}
-                    <span>
-                        {isCorrect ? "Correct!" : "Incorrect. The answer is:"}
-                    </span>
+                    <span>{getMessage()}</span>
                 </div>
                 <div className="flex flex-row items-center justify-start p-6 space-x-6">
                     <div className="h-28 relative shrink-0 w-28">
