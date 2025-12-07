@@ -1,11 +1,13 @@
 import { Info } from "lucide-react";
-import { useState } from "react";
 
-const Settings = () => {
-    const [isRandomMode, setIsRandomMode] = useState(false);
+type Props = {
+    isRandomMode: boolean;
+    setRandomMode: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
+const Settings = ({ isRandomMode, setRandomMode }: Props) => {
     const toggleRandomMode = () => {
-        setIsRandomMode((prev) => !prev);
+        setRandomMode((prev) => !prev);
     };
 
     return (

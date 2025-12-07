@@ -6,7 +6,7 @@ import ResultView from "./components/ResultView";
 import Settings from "./components/Settings";
 import type { Song } from "./types";
 import { GameState, Outcome } from "./types";
-import { getRandomSong } from "./utils";
+import { getRandomSong, getRandomStartTime } from "./utils";
 import { useRef, useState } from "react";
 
 const App = () => {
@@ -15,8 +15,10 @@ const App = () => {
     const [gameState, setGameState] = useState<GameState>(GameState.ANSWERING);
     const [isBuffering, setBuffering] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
+    const [isRandomMode, setRandomMode] = useState(false);
     const [outcome, setOutcome] = useState<Outcome>(Outcome.INCORRECT);
     const [showSettings, setShowSettings] = useState(false);
+    const [startSeekTime, setStartSeekTime] = useState(0);
     const [streak, setStreak] = useState(0);
 
     const playerRef = useRef<ReactPlayer>(null);
@@ -31,6 +33,7 @@ const App = () => {
         setCurrentSong(getRandomSong());
         setGameState(GameState.ANSWERING);
         setOutcome(Outcome.INCORRECT);
+        setStartSeekTime(0);
     };
 
     const handlePlay = () => {
@@ -46,7 +49,24 @@ const App = () => {
         setBuffering(false);
 
         if (playerRef.current) {
-            playerRef.current.currentTime = 0;
+            let seekTime = 0;
+
+            if (isRandomMode) {
+                if (startSeekTime === 0) {
+                    const newRandomTime = getRandomStartTime(
+                        playerRef.current.duration
+                    );
+
+                    seekTime = newRandomTime;
+                    setStartSeekTime(newRandomTime);
+                } else {
+                    seekTime = startSeekTime;
+                }
+            } else {
+                seekTime = 0;
+            }
+
+            playerRef.current.currentTime = seekTime;
 
             if (gameState === GameState.ANSWERING) {
                 setTimeout(() => {
@@ -88,7 +108,12 @@ const App = () => {
                     width="100%"
                 />
                 <Header setShowSettings={setShowSettings} streak={streak} />
-                {showSettings && <Settings />}
+                {showSettings && (
+                    <Settings
+                        isRandomMode={isRandomMode}
+                        setRandomMode={setRandomMode}
+                    />
+                )}
                 {(gameState !== GameState.RESULT || isPlaying) && (
                     <PlayButton
                         gameState={gameState}
