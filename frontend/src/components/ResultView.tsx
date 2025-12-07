@@ -1,6 +1,7 @@
 import type { Song } from "../types";
 import { albumNameCoverMap } from "../constants/albumNameCoverMap";
 import { CheckCircle, SkipForward, XCircle } from "lucide-react";
+import { useState } from "react";
 
 type Props = {
     currentSong: Song;
@@ -8,7 +9,10 @@ type Props = {
 };
 
 const ResultView = ({ currentSong, handleNext }: Props) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+
     const isCorrect = true;
+    const src = albumNameCoverMap[currentSong.album];
 
     return (
         <>
@@ -33,10 +37,21 @@ const ResultView = ({ currentSong, handleNext }: Props) => {
                     </span>
                 </div>
                 <div className="flex flex-row items-center justify-start p-6 space-x-6">
-                    <img
-                        className="h-28 object-cover rounded-lg shadow-xl w-28"
-                        src={albumNameCoverMap[currentSong.album]}
-                    />
+                    <div className="h-28 relative shrink-0 w-28">
+                        <img
+                            onLoad={() => setIsLoaded(true)}
+                            src={src}
+                            style={{ display: "none" }}
+                        />
+                        {isLoaded ? (
+                            <img
+                                className="h-28 object-cover rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] w-28"
+                                src={src}
+                            />
+                        ) : (
+                            <div className="absolute animate-pulse bg-gray-200 h-28 inset-0 object-cover rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] w-28" />
+                        )}
+                    </div>
                     <div>
                         <h1 className="font-semibold text-2xl text-gray-900">
                             {currentSong.title}
