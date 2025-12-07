@@ -5,10 +5,16 @@ import type { Song } from "../types";
 type Props = {
     answer: string;
     handleSubmit: () => void;
+    isPlaying: boolean;
     setAnswer: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const AnsweringView = ({ answer, handleSubmit, setAnswer }: Props) => {
+const AnsweringView = ({
+    answer,
+    handleSubmit,
+    isPlaying,
+    setAnswer
+}: Props) => {
     const [isFocused, setIsFocused] = useState(false);
 
     const filteredSongs = songs.filter((song: Song) => {
@@ -48,13 +54,15 @@ const AnsweringView = ({ answer, handleSubmit, setAnswer }: Props) => {
             )}
             <div className="flex mt-4 space-x-4">
                 <button
-                    className="bg-indigo-600 cursor-pointer flex-1 font-medium hover:bg-indigo-700 py-3 rounded-lg shadow-md text-white"
+                    className="bg-indigo-600 cursor-pointer disabled:bg-indigo-300 disabled:cursor-not-allowed flex-1 font-medium hover:bg-indigo-700 py-3 rounded-lg shadow-md text-white"
+                    disabled={answer.length < 1}
                     onClick={handleSubmit}
                 >
                     Submit answer
                 </button>
                 <button
-                    className="bg-white border border-gray-300 cursor-pointer flex-1 font-medium hover:bg-gray-100 py-3 rounded-lg shadow-sm text-gray-700"
+                    className="bg-white border border-gray-300 cursor-pointer disabled:cursor-not-allowed disabled:hover:bg-white disabled:opacity-50 flex-1 font-medium hover:bg-gray-100 py-3 rounded-lg shadow-sm text-gray-700"
+                    disabled={isPlaying}
                     onClick={handleSubmit}
                 >
                     Give up

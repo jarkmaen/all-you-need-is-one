@@ -93,6 +93,7 @@ const App = () => {
                     <AnsweringView
                         answer={answer}
                         handleSubmit={handleSubmit}
+                        isPlaying={isPlaying}
                         setAnswer={setAnswer}
                     />
                 )}
