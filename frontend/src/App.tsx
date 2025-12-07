@@ -10,6 +10,7 @@ import { getRandomSong } from "./utils";
 import { useRef, useState } from "react";
 
 const App = () => {
+    const [answer, setAnswer] = useState("");
     const [currentSong, setCurrentSong] = useState<Song>(getRandomSong());
     const [gameState, setGameState] = useState<GameState>(GameState.ANSWERING);
     const [isBuffering, setBuffering] = useState(false);
@@ -24,6 +25,7 @@ const App = () => {
 
     const handleNext = () => {
         handleEnd();
+        setAnswer("");
         setCurrentSong(getRandomSong());
         setGameState(GameState.ANSWERING);
     };
@@ -78,7 +80,11 @@ const App = () => {
                     />
                 )}
                 {gameState === GameState.ANSWERING && (
-                    <AnsweringView handleSubmit={handleSubmit} />
+                    <AnsweringView
+                        answer={answer}
+                        handleSubmit={handleSubmit}
+                        setAnswer={setAnswer}
+                    />
                 )}
                 {gameState === GameState.RESULT && (
                     <ResultView
