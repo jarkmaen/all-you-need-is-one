@@ -6,12 +6,12 @@ import { useState } from "react";
 type Props = {
     currentSong: Song;
     handleNext: () => void;
+    isCorrect: boolean;
 };
 
-const ResultView = ({ currentSong, handleNext }: Props) => {
+const ResultView = ({ currentSong, handleNext, isCorrect }: Props) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const isCorrect = true;
     const src = albumNameCoverMap[currentSong.album];
 
     return (

@@ -14,6 +14,7 @@ const App = () => {
     const [currentSong, setCurrentSong] = useState<Song>(getRandomSong());
     const [gameState, setGameState] = useState<GameState>(GameState.ANSWERING);
     const [isBuffering, setBuffering] = useState(false);
+    const [isCorrect, setCorrect] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
 
@@ -26,6 +27,7 @@ const App = () => {
     const handleNext = () => {
         handleEnd();
         setAnswer("");
+        setCorrect(false);
         setCurrentSong(getRandomSong());
         setGameState(GameState.ANSWERING);
     };
@@ -54,6 +56,10 @@ const App = () => {
     };
 
     const handleSubmit = () => {
+        if (answer.trim().toLowerCase() === currentSong.title.toLowerCase()) {
+            setCorrect(true);
+        }
+
         setGameState(GameState.RESULT);
         setPlaying(true);
     };
@@ -90,6 +96,7 @@ const App = () => {
                     <ResultView
                         currentSong={currentSong}
                         handleNext={handleNext}
+                        isCorrect={isCorrect}
                     />
                 )}
             </div>
