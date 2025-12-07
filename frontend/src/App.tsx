@@ -22,6 +22,12 @@ const App = () => {
         setPlaying(false);
     };
 
+    const handleNext = () => {
+        handleEnd();
+        setCurrentSong(getRandomSong());
+        setGameState(GameState.ANSWERING);
+    };
+
     const handlePlay = () => {
         if (gameState === GameState.ANSWERING) {
             setBuffering(true);
@@ -75,7 +81,7 @@ const App = () => {
                     <AnsweringView handleSubmit={handleSubmit} />
                 )}
                 {gameState === GameState.RESULT && (
-                    <ResultView setGameState={setGameState} />
+                    <ResultView handleNext={handleNext} />
                 )}
             </div>
         </div>

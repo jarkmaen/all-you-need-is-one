@@ -1,12 +1,11 @@
 import whiteAlbumCover from "../assets/images/the_beatles.jpg";
 import { CheckCircle, SkipForward, XCircle } from "lucide-react";
-import { GameState } from "../types";
 
 type Props = {
-    setGameState: React.Dispatch<React.SetStateAction<GameState>>;
+    handleNext: () => void;
 };
 
-const ResultView = ({ setGameState }: Props) => {
+const ResultView = ({ handleNext }: Props) => {
     const isCorrect = true;
 
     return (
@@ -49,7 +48,7 @@ const ResultView = ({ setGameState }: Props) => {
             </div>
             <button
                 className="bg-gray-900 cursor-pointer flex font-medium hover:bg-gray-800 items-center justify-center py-3 rounded-lg shadow-md space-x-2 text-white w-full"
-                onClick={() => setGameState(GameState.ANSWERING)}
+                onClick={handleNext}
             >
                 <SkipForward size={20} />
                 <span>Next song</span>
