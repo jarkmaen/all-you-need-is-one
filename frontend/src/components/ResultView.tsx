@@ -48,7 +48,7 @@ const ResultView = ({ setGameState }: Props) => {
                 </div>
             </div>
             <button
-                className="bg-gray-900 cursor-pointer flex font-medium hover:bg-gray-800 items-center justify-center py-3 rounded-lg shadow-md space-x-2 text-white transition w-full"
+                className="bg-gray-900 cursor-pointer flex font-medium hover:bg-gray-800 items-center justify-center py-3 rounded-lg shadow-md space-x-2 text-white w-full"
                 onClick={() => setGameState(GameState.ANSWERING)}
             >
                 <SkipForward size={20} />
