@@ -22,7 +22,7 @@ const Header = ({ setShowSettings, streak }: Props) => {
                     <span>Streak: {streak}</span>
                 </div>
                 <button
-                    className="cursor-pointer hover:bg-gray-200 p-2 rounded-full text-gray-700 transition"
+                    className="cursor-pointer hover:bg-gray-200 p-2 rounded-full text-gray-700"
                     onClick={() => setShowSettings((prev) => !prev)}
                 >
                     <Settings size={20} />
