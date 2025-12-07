@@ -17,6 +17,7 @@ const App = () => {
     const [isCorrect, setCorrect] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
+    const [streak, setStreak] = useState(0);
 
     const playerRef = useRef<ReactPlayer>(null);
 
@@ -58,6 +59,9 @@ const App = () => {
     const handleSubmit = () => {
         if (answer.trim().toLowerCase() === currentSong.title.toLowerCase()) {
             setCorrect(true);
+            setStreak((s) => s + 1);
+        } else {
+            setStreak(0);
         }
 
         setGameState(GameState.RESULT);
@@ -75,7 +79,7 @@ const App = () => {
                     src={`https://www.youtube.com/watch?v=${currentSong.youtubeId}`}
                     width="100%"
                 />
-                <Header setShowSettings={setShowSettings} />
+                <Header setShowSettings={setShowSettings} streak={streak} />
                 {showSettings && <Settings />}
                 {(gameState !== GameState.RESULT || isPlaying) && (
                     <PlayButton
