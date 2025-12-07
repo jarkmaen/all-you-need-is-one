@@ -27,6 +27,11 @@ const App = () => {
         setPlaying(false);
     };
 
+    const handleModeChange = () => {
+        setRandomMode((prev) => !prev);
+        setStreak(0);
+    };
+
     const handleNext = () => {
         handleEnd();
         setAnswer("");
@@ -110,8 +115,8 @@ const App = () => {
                 <Header setShowSettings={setShowSettings} streak={streak} />
                 {showSettings && (
                     <Settings
+                        handleModeChange={handleModeChange}
                         isRandomMode={isRandomMode}
-                        setRandomMode={setRandomMode}
                     />
                 )}
                 {(gameState !== GameState.RESULT || isPlaying) && (

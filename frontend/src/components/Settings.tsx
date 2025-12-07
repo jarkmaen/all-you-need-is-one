@@ -1,15 +1,11 @@
 import { Info } from "lucide-react";
 
 type Props = {
+    handleModeChange: () => void;
     isRandomMode: boolean;
-    setRandomMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Settings = ({ isRandomMode, setRandomMode }: Props) => {
-    const toggleRandomMode = () => {
-        setRandomMode((prev) => !prev);
-    };
-
+const Settings = ({ handleModeChange, isRandomMode }: Props) => {
     return (
         <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
             <h1 className="flex font-medium items-center mb-2 space-x-2 text-gray-700">
@@ -27,7 +23,7 @@ const Settings = ({ isRandomMode, setRandomMode }: Props) => {
                     <input
                         checked={isRandomMode}
                         className="absolute appearance-none bg-white border-4 cursor-pointer h-6 rounded-full w-6"
-                        onChange={toggleRandomMode}
+                        onChange={handleModeChange}
                         style={{
                             borderColor: isRandomMode ? "#4f39f6" : "#d1d5dc",
                             left: isRandomMode ? "0px" : "calc(100% - 24px)",
