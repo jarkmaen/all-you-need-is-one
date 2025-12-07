@@ -1,11 +1,13 @@
-import whiteAlbumCover from "../assets/images/the_beatles.jpg";
+import type { Song } from "../types";
+import { albumNameCoverMap } from "../constants/albumNameCoverMap";
 import { CheckCircle, SkipForward, XCircle } from "lucide-react";
 
 type Props = {
+    currentSong: Song;
     handleNext: () => void;
 };
 
-const ResultView = ({ handleNext }: Props) => {
+const ResultView = ({ currentSong, handleNext }: Props) => {
     const isCorrect = true;
 
     return (
@@ -33,15 +35,14 @@ const ResultView = ({ handleNext }: Props) => {
                 <div className="flex flex-row items-center justify-start p-6 space-x-6">
                     <img
                         className="h-28 object-cover rounded-lg shadow-xl w-28"
-                        src={whiteAlbumCover}
+                        src={albumNameCoverMap[currentSong.album]}
                     />
                     <div>
                         <h1 className="font-semibold text-2xl text-gray-900">
-                            Everybody's Got Something to Hide Except Me and My
-                            Monkey
+                            {currentSong.title}
                         </h1>
                         <p className="text-gray-500 text-sm">
-                            The Beatles (White Album)
+                            {currentSong.album}
                         </p>
                     </div>
                 </div>

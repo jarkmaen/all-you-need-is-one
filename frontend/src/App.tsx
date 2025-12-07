@@ -81,7 +81,10 @@ const App = () => {
                     <AnsweringView handleSubmit={handleSubmit} />
                 )}
                 {gameState === GameState.RESULT && (
-                    <ResultView handleNext={handleNext} />
+                    <ResultView
+                        currentSong={currentSong}
+                        handleNext={handleNext}
+                    />
                 )}
             </div>
         </div>
