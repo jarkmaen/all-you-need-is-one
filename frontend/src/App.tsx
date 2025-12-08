@@ -18,7 +18,7 @@ const App = () => {
     const [isRandomMode, setRandomMode] = useState(false);
     const [outcome, setOutcome] = useState<Outcome>(Outcome.INCORRECT);
     const [showSettings, setShowSettings] = useState(false);
-    const [startSeekTime, setStartSeekTime] = useState(0);
+    const [startTime, setStartTime] = useState(0);
     const [streak, setStreak] = useState(0);
 
     const playerRef = useRef<ReactPlayer>(null);
@@ -34,13 +34,13 @@ const App = () => {
         setGameState(GameState.ANSWERING);
         setOutcome(Outcome.INCORRECT);
         setPlaying(false);
-        setStartSeekTime(0);
+        setStartTime(0);
     };
 
     const handlePause = () => {
         if (gameState === GameState.ANSWERING) {
             if (playerRef.current) {
-                playerRef.current.currentTime = startSeekTime;
+                playerRef.current.currentTime = startTime;
             }
         }
     };
@@ -48,40 +48,41 @@ const App = () => {
     const handlePlay = () => {
         if (gameState === GameState.ANSWERING) {
             setBuffering(true);
+
+            if (playerRef.current) {
+                let currentTime = 0;
+
+                if (isRandomMode) {
+                    if (startTime === 0) {
+                        const randomStartTime = getRandomStartTime(
+                            playerRef.current.duration
+                        );
+
+                        currentTime = randomStartTime;
+                        setStartTime(randomStartTime);
+                    } else {
+                        currentTime = startTime;
+                    }
+                } else {
+                    currentTime = 0;
+                }
+
+                playerRef.current.currentTime = currentTime;
+            }
+
             setPlaying(true);
         } else {
             setPlaying(false);
         }
     };
 
-    const handleStart = () => {
+    const handlePlaying = () => {
         setBuffering(false);
 
-        if (playerRef.current) {
-            let seekTime = 0;
-
-            if (isRandomMode) {
-                if (startSeekTime === 0) {
-                    const newRandomTime = getRandomStartTime(
-                        playerRef.current.duration
-                    );
-
-                    seekTime = newRandomTime;
-                    setStartSeekTime(newRandomTime);
-                } else {
-                    seekTime = startSeekTime;
-                }
-            } else {
-                seekTime = 0;
-            }
-
-            playerRef.current.currentTime = seekTime;
-
-            if (gameState === GameState.ANSWERING) {
-                setTimeout(() => {
-                    setPlaying(false);
-                }, 1000);
-            }
+        if (gameState === GameState.ANSWERING) {
+            setTimeout(() => {
+                setPlaying(false);
+            }, 1000);
         }
     };
 
@@ -110,7 +111,7 @@ const App = () => {
             <div className="bg-white max-w-xl p-6 rounded-xl shadow-xl space-y-4 w-full">
                 <ReactPlayer
                     onPause={handlePause}
-                    onStart={handleStart}
+                    onPlaying={handlePlaying}
                     playing={isPlaying}
                     ref={playerRef}
                     src={`https://www.youtube.com/watch?v=${currentSong.youtubeId}`}

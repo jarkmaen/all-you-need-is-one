@@ -56,7 +56,7 @@ const AnsweringView = ({
             <div className="flex mt-4 space-x-4">
                 <button
                     className="bg-indigo-600 cursor-pointer disabled:bg-indigo-300 disabled:cursor-not-allowed flex-1 font-medium hover:bg-indigo-700 py-3 rounded-lg shadow-md text-white"
-                    disabled={answer.length < 1}
+                    disabled={answer.length < 1 || isPlaying}
                     onClick={() => handleSubmit(false)}
                 >
                     Submit answer
