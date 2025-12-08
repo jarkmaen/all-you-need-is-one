@@ -21,6 +21,7 @@
         "typescript-eslint": "^8.46.4",
         "vite": "^7.2.4"
     },
+    "homepage": "https://jarkmaen.github.io/all-you-need-is-one",
     "name": "frontend",
     "private": true,
     "scripts": {
