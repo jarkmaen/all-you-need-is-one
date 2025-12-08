@@ -11,7 +11,7 @@ import { useRef, useState } from "react";
 
 const App = () => {
     const [answer, setAnswer] = useState("");
-    const [currentSong, setCurrentSong] = useState<Song>(getRandomSong());
+    const [currentSong, setCurrentSong] = useState<Song>(() => getRandomSong());
     const [gameState, setGameState] = useState<GameState>(GameState.ANSWERING);
     const [isBuffering, setBuffering] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
