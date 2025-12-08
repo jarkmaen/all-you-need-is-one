@@ -23,22 +23,26 @@ const App = () => {
 
     const playerRef = useRef<ReactPlayer>(null);
 
-    const handleEnd = () => {
-        setPlaying(false);
-    };
-
     const handleModeChange = () => {
         setRandomMode((prev) => !prev);
         setStreak(0);
     };
 
     const handleNext = () => {
-        handleEnd();
         setAnswer("");
         setCurrentSong(getRandomSong());
         setGameState(GameState.ANSWERING);
         setOutcome(Outcome.INCORRECT);
+        setPlaying(false);
         setStartSeekTime(0);
+    };
+
+    const handlePause = () => {
+        if (gameState === GameState.ANSWERING) {
+            if (playerRef.current) {
+                playerRef.current.currentTime = startSeekTime;
+            }
+        }
     };
 
     const handlePlay = () => {
@@ -46,7 +50,7 @@ const App = () => {
             setBuffering(true);
             setPlaying(true);
         } else {
-            handleEnd();
+            setPlaying(false);
         }
     };
 
@@ -105,7 +109,7 @@ const App = () => {
         <div className="flex items-center justify-center min-h-screen">
             <div className="bg-white max-w-xl p-6 rounded-xl shadow-xl space-y-4 w-full">
                 <ReactPlayer
-                    onEnded={handleEnd}
+                    onPause={handlePause}
                     onStart={handleStart}
                     playing={isPlaying}
                     ref={playerRef}
