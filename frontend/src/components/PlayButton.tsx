@@ -1,4 +1,4 @@
-import { CircleStop, Loader, Play, XCircle } from "lucide-react";
+import { CircleStop, Loader, Play } from "lucide-react";
 import { GameState } from "../types";
 
 type Props = {
@@ -31,7 +31,12 @@ const PlayButton = ({
         icon = <CircleStop size={24} />;
         text = "Stop playing";
     } else if (isBuffering) {
-        icon = <Loader size={24} />;
+        icon = (
+            <Loader
+                className="[animation-duration:2s] animate-spin"
+                size={24}
+            />
+        );
         text = "Loading...";
     } else if (isPlaying) {
         text = "One second playing";
