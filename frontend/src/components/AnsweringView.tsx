@@ -42,9 +42,10 @@ const AnsweringView = ({
             />
             {showDropdown && (
                 <ul className="absolute bg-white border border-gray-300 max-h-60 mt-1 overflow-auto rounded-lg shadow-lg w-full">
-                    {filteredSongs.map((song) => (
+                    {filteredSongs.map((song, i) => (
                         <li
                             className="cursor-pointer hover:bg-indigo-500 hover:text-white px-4 py-2"
+                            key={i}
                             onMouseDown={() => handleSelect(song.title)}
                         >
                             {song.title}
