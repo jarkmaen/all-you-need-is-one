@@ -32,7 +32,7 @@ const AnsweringView = ({
     return (
         <div className="relative">
             <input
-                className="border-0 focus:inset-ring-2 focus:inset-ring-indigo-500 inset-ring inset-ring-gray-200 outline-none px-4 py-3 rounded-lg text-lg w-full"
+                className="border-0 focus:inset-ring-2 focus:inset-ring-indigo-500 inset-ring inset-ring-gray-200 outline-none px-4 py-4 rounded-lg w-full"
                 onBlur={() => setIsFocused(false)}
                 onChange={(e) => setAnswer(e.target.value)}
                 onFocus={() => setIsFocused(true)}
@@ -55,14 +55,14 @@ const AnsweringView = ({
             )}
             <div className="flex mt-4 space-x-4">
                 <button
-                    className="bg-indigo-600 cursor-pointer disabled:bg-indigo-300 disabled:cursor-not-allowed flex-1 font-medium hover:bg-indigo-700 py-3 rounded-lg shadow-md text-white"
+                    className="bg-indigo-600 cursor-pointer disabled:bg-indigo-300 disabled:cursor-not-allowed flex-1 font-medium hover:bg-indigo-700 py-4 rounded-lg shadow-md text-white"
                     disabled={answer.length < 1 || isPlaying}
                     onClick={() => handleSubmit(false)}
                 >
                     Submit answer
                 </button>
                 <button
-                    className="bg-white border border-gray-300 cursor-pointer disabled:cursor-not-allowed disabled:hover:bg-white disabled:opacity-50 flex-1 font-medium hover:bg-gray-100 py-3 rounded-lg shadow-sm text-gray-700"
+                    className="bg-white cursor-pointer disabled:cursor-not-allowed disabled:hover:bg-white disabled:opacity-50 flex-1 font-medium hover:bg-gray-100 py-4 ring ring-gray-300 ring-inset rounded-lg shadow-sm text-gray-700"
                     disabled={isPlaying}
                     onClick={() => handleSubmit(true)}
                 >

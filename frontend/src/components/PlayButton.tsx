@@ -1,4 +1,4 @@
-import { Loader, Play, XCircle } from "lucide-react";
+import { CircleStop, Loader, Play, XCircle } from "lucide-react";
 import { GameState } from "../types";
 
 type Props = {
@@ -21,14 +21,14 @@ const PlayButton = ({
         "disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer flex font-medium items-center justify-center py-4 rounded-lg shadow-md space-x-3 text-white w-full";
     const classes =
         gameState === GameState.RESULT
-            ? `bg-red-600 hover:bg-red-700 ${base}`
+            ? `bg-gray-900 hover:bg-gray-800 ${base}`
             : `bg-indigo-600 hover:bg-indigo-700 ${base}`;
 
     let icon = <Play size={24} />;
     let text = "Play one second";
 
     if (gameState === GameState.RESULT) {
-        icon = <XCircle size={24} />;
+        icon = <CircleStop size={24} />;
         text = "Stop playing";
     } else if (isBuffering) {
         icon = <Loader size={24} />;

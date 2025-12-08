@@ -115,6 +115,7 @@ const App = () => {
                     playing={isPlaying}
                     ref={playerRef}
                     src={`https://www.youtube.com/watch?v=${currentSong.youtubeId}`}
+                    style={{ display: "none" }}
                     width="100%"
                 />
                 <Header setShowSettings={setShowSettings} streak={streak} />

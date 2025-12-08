@@ -36,8 +36,7 @@ const ResultView = ({ currentSong, handleNext, outcome }: Props) => {
                 <div
                     className={`${
                         isCorrect ? "bg-green-600" : "bg-red-600"
-                    } flex font-bold items-center justify-center p-4 space-x-3 text-white text-xl 
-                  `}
+                    } flex font-bold items-center justify-center p-4 space-x-3 text-white text-xl`}
                 >
                     {isCorrect ? (
                         <CheckCircle size={28} />
@@ -73,7 +72,7 @@ const ResultView = ({ currentSong, handleNext, outcome }: Props) => {
                 </div>
             </div>
             <button
-                className="bg-gray-900 cursor-pointer flex font-medium hover:bg-gray-800 items-center justify-center py-3 rounded-lg shadow-md space-x-2 text-white w-full"
+                className="bg-gray-900 cursor-pointer flex font-medium hover:bg-gray-800 items-center justify-center py-4 rounded-lg shadow-md space-x-3 text-white w-full"
                 onClick={handleNext}
             >
                 <SkipForward size={20} />
