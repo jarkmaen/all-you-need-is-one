@@ -64,7 +64,8 @@ const App = () => {
                         currentTime = startTime;
                     }
                 } else {
-                    currentTime = 0;
+                    currentTime = currentSong.startTime ?? 0;
+                    setStartTime(currentTime);
                 }
 
                 playerRef.current.currentTime = currentTime;

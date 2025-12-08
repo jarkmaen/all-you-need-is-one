@@ -3,6 +3,7 @@ import type { Song } from "../types";
 export const songs: Song[] = [
     {
         album: "Please Please Me",
+        startTime: 1,
         title: "I Saw Her Standing There",
         youtubeId: "oxwAB3SECtc"
     },
@@ -93,6 +94,7 @@ export const songs: Song[] = [
     },
     {
         album: "With the Beatles",
+        startTime: 0.5,
         title: "It Won't Be Long",
         youtubeId: "UVKU6SevefY"
     },
@@ -193,6 +195,7 @@ export const songs: Song[] = [
     },
     {
         album: "A Hard Day's Night",
+        startTime: 0.5,
         title: "A Hard Day's Night",
         youtubeId: "zx2TFk0vh1I"
     },
@@ -268,6 +271,7 @@ export const songs: Song[] = [
     },
     {
         album: "Beatles for Sale",
+        startTime: 0.5,
         title: "No Reply",
         youtubeId: "YgFo9STa70E"
     },
@@ -353,6 +357,7 @@ export const songs: Song[] = [
     },
     {
         album: "Help!",
+        startTime: 0.5,
         title: "Help!",
         youtubeId: "MKUex3fci5c"
     },
@@ -428,11 +433,13 @@ export const songs: Song[] = [
     },
     {
         album: "Single",
+        startTime: 0.5,
         title: "Day Tripper",
         youtubeId: "psyg1nPT0g8"
     },
     {
         album: "Rubber Soul",
+        startTime: 0.5,
         title: "Drive My Car",
         youtubeId: "kfSQkZuIx84"
     },
@@ -513,6 +520,7 @@ export const songs: Song[] = [
     },
     {
         album: "Revolver",
+        startTime: 1,
         title: "Taxman",
         youtubeId: "l0zaebtU-CA"
     },
@@ -568,6 +576,7 @@ export const songs: Song[] = [
     },
     {
         album: "Revolver",
+        startTime: 1.5,
         title: "I Want to Tell You",
         youtubeId: "7kXusIyqQ2o"
     },
@@ -578,6 +587,7 @@ export const songs: Song[] = [
     },
     {
         album: "Revolver",
+        startTime: 1,
         title: "Tomorrow Never Knows",
         youtubeId: "pHNbHn3i9S4"
     },
@@ -593,6 +603,7 @@ export const songs: Song[] = [
     },
     {
         album: "Sgt. Pepper's Lonely Hearts Club Band",
+        startTime: 2,
         title: "Sgt. Pepper's Lonely Hearts Club Band",
         youtubeId: "VtXl8xAPAtA"
     },
@@ -628,6 +639,7 @@ export const songs: Song[] = [
     },
     {
         album: "Sgt. Pepper's Lonely Hearts Club Band",
+        startTime: 0.5,
         title: "Within You Without You",
         youtubeId: "HsffxGyY4ck"
     },
@@ -673,6 +685,7 @@ export const songs: Song[] = [
     },
     {
         album: "Magical Mystery Tour",
+        startTime: 0.5,
         title: "Magical Mystery Tour",
         youtubeId: "l8WMGBuNaus"
     },
@@ -698,6 +711,7 @@ export const songs: Song[] = [
     },
     {
         album: "Magical Mystery Tour",
+        startTime: 1,
         title: "Blue Jay Way",
         youtubeId: "ixmOAb6qzvY"
     },
@@ -723,6 +737,7 @@ export const songs: Song[] = [
     },
     {
         album: "The Beatles (White Album)",
+        startTime: 2,
         title: "Back in the U.S.S.R.",
         youtubeId: "0ArlUSVDQIw"
     },
@@ -808,6 +823,7 @@ export const songs: Song[] = [
     },
     {
         album: "The Beatles (White Album)",
+        startTime: 0.5,
         title: "Birthday",
         youtubeId: "dhdOPhTHeoE"
     },
@@ -903,6 +919,7 @@ export const songs: Song[] = [
     },
     {
         album: "Abbey Road",
+        startTime: 0.5,
         title: "Come Together",
         youtubeId: "oolpPmuK2I8"
     },
@@ -993,11 +1010,13 @@ export const songs: Song[] = [
     },
     {
         album: "Let It Be",
+        startTime: 0.5,
         title: "Two of Us",
         youtubeId: "cLQox8e9688"
     },
     {
         album: "Let It Be",
+        startTime: 3.5,
         title: "Dig a Pony",
         youtubeId: "LpdJE7HG8Ls"
     },
@@ -1013,6 +1032,7 @@ export const songs: Song[] = [
     },
     {
         album: "Let It Be",
+        startTime: 1,
         title: "Dig It",
         youtubeId: "fUUOX6kAIxI"
     },
@@ -1043,6 +1063,7 @@ export const songs: Song[] = [
     },
     {
         album: "Let It Be",
+        startTime: 3,
         title: "For You Blue",
         youtubeId: "TIFHRaZERHg"
     },
@@ -1053,11 +1074,13 @@ export const songs: Song[] = [
     },
     {
         album: "Single",
+        startTime: 0.5,
         title: "Free as a Bird",
         youtubeId: "6cDHvw8fn2c"
     },
     {
         album: "Single",
+        startTime: 0.5,
         title: "Real Love",
         youtubeId: "Y2iDmuoIRl0"
     },
