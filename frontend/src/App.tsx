@@ -21,7 +21,7 @@ const App = () => {
     const [startTime, setStartTime] = useState(0);
     const [streak, setStreak] = useState(0);
 
-    const playerRef = useRef<ReactPlayer>(null);
+    const playerRef = useRef<HTMLVideoElement | null>(null);
 
     const handleModeChange = () => {
         setRandomMode((prev) => !prev);
