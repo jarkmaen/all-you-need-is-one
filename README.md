@@ -2,9 +2,9 @@
 
 ## Overview
 
-A simple web application where you hear one second of a Beatles song and try to identify it. It includes all 213 Beatles songs. Try the game here: [https://jarkmaen.github.io/all-you-need-is-one](https://jarkmaen.github.io/all-you-need-is-one)
+A simple web application where you hear one second of a Beatles song and try to identify it. It includes all 213 Beatles songs. Try the game here: [https://jarkmaen.github.io/all-you-need-is-one/](https://jarkmaen.github.io/all-you-need-is-one/)
 
-The gameplay loop:
+#### The gameplay loop:
 
 - Press "Play one second" to hear the audio snippet.
 - Type your answer into the input field (it suggests song titles as you type).
@@ -24,7 +24,7 @@ If you want an extra challenge, you can enable "Random mode" in the settings. In
 
 ## How to use
 
-You can either play the game through the deployed link, or run the application locally. To clone and run this application locally, you need to have both [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/) (which comes with [npm](https://www.npmjs.com/)) installed on your computer. From your terminal:
+You can either play the game through the deployed link, or run the application locally. To run it locally, you need to have both [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/) (which comes with [npm](https://www.npmjs.com/)) installed on your computer. From your terminal:
 
 ```
 # Clone this repository and go to the root directory
