@@ -17,7 +17,7 @@ const Header = ({ setShowSettings, streak }: Props) => {
                 </p>
             </div>
             <div className="flex flex-col items-end space-y-2">
-                <div className="flex font-medium items-center space-x-1 text-gray-900 text-sm">
+                <div className="flex font-medium items-center space-x-1 text-gray-900 text-sm whitespace-nowrap">
                     <Zap className="text-indigo-600" size={16} />
                     <span>Streak: {streak}</span>
                 </div>

@@ -108,8 +108,8 @@ const App = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <div className="bg-white max-w-xl p-6 rounded-xl shadow-xl space-y-4 w-full">
+        <div className="flex justify-center min-h-screen sm:items-center">
+            <div className="bg-white max-w-xl p-6 sm:rounded-xl sm:shadow-xl space-y-4 w-full">
                 <ReactPlayer
                     onPause={handlePause}
                     onPlaying={handlePlaying}
