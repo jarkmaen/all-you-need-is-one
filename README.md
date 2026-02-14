@@ -2,7 +2,9 @@
 
 ## Overview
 
-A simple web application where you hear one second of a Beatles song and try to identify it. It includes all 213 Beatles songs. Try the game here: [https://jarkmaen.github.io/all-you-need-is-one/](https://jarkmaen.github.io/all-you-need-is-one/)
+A simple web application where you hear one second of a Beatles song and try to identify it. It includes all 213 Beatles songs.
+
+Try the game here: [https://jarkmaen.github.io/all-you-need-is-one/](https://jarkmaen.github.io/all-you-need-is-one/) (_Note: Since audio is streamed through YouTube, an adblocker is highly recommended to prevent ads from interrupting the one second snippets._)
 
 #### The gameplay loop:
 
