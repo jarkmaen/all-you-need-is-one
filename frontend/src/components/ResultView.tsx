@@ -45,7 +45,7 @@ const ResultView = ({ currentSong, handleNext, outcome }: Props) => {
                     )}
                     <span>{getMessage()}</span>
                 </div>
-                <div className="flex flex-col items-center justify-start p-6 sm:flex-row sm:space-x-6 sm:space-y-0 sm:text-left space-y-5 text-center">
+                <div className="flex flex-col items-center justify-start lg:flex-row lg:space-x-6 lg:space-y-0 lg:text-left p-6 space-y-5 text-center">
                     <div className="h-28 relative shrink-0 w-28">
                         <img
                             onLoad={() => setIsLoaded(true)}
