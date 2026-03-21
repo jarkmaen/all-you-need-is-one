@@ -1,5 +1,5 @@
 import type { Song } from "../types";
-import { albumNameCoverMap } from "../constants/albumNameCoverMap";
+import { ALBUM_COVER_MAP } from "../constants/albums";
 import { CheckCircle, SkipForward, XCircle } from "lucide-react";
 import { OUTCOMES, type Outcome } from "../constants/outcomes";
 import { useState } from "react";
@@ -14,7 +14,6 @@ const ResultView = ({ currentSong, handleNext, outcome }: Props) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const isCorrect = outcome === OUTCOMES.CORRECT;
-    const src = albumNameCoverMap[currentSong.album];
 
     const getMessage = () => {
         if (outcome === OUTCOMES.GIVE_UP) {
@@ -46,20 +45,17 @@ const ResultView = ({ currentSong, handleNext, outcome }: Props) => {
                     <span>{getMessage()}</span>
                 </div>
                 <div className="flex flex-col items-center justify-start lg:flex-row lg:space-x-6 lg:space-y-0 lg:text-left p-6 space-y-5 text-center">
-                    <div className="h-28 relative shrink-0 w-28">
+                    <div
+                        className={`${!isLoaded ? "animate-pulse" : ""} bg-gray-200 h-28 overflow-hidden rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] shrink-0 w-28`}
+                    >
                         <img
+                            alt={currentSong.album}
+                            className={`
+                    h-full object-cover ${isLoaded ? "opacity-100" : "opacity-0"} w-full
+                `}
                             onLoad={() => setIsLoaded(true)}
-                            src={src}
-                            style={{ display: "none" }}
+                            src={ALBUM_COVER_MAP[currentSong.album]}
                         />
-                        {isLoaded ? (
-                            <img
-                                className="h-28 object-cover rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] w-28"
-                                src={src}
-                            />
-                        ) : (
-                            <div className="absolute animate-pulse bg-gray-200 h-28 inset-0 object-cover rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] w-28" />
-                        )}
                     </div>
                     <div>
                         <h1 className="font-semibold text-2xl text-gray-900">

@@ -1,5 +1,7 @@
+import type { AlbumName } from "./constants/albums";
+
 export interface Song {
-    album: string;
+    album: AlbumName;
     startTime?: number;
     title: string;
     youtubeId: string;
