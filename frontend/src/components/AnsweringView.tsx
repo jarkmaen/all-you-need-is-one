@@ -1,6 +1,6 @@
+import type { Song } from "../types";
 import { songs } from "../data/songs";
 import { useState } from "react";
-import type { Song } from "../types";
 
 type Props = {
     answer: string;

@@ -1,5 +1,5 @@
 import { CircleStop, Loader, Play } from "lucide-react";
-import { GameState } from "../types";
+import { GAME_STATES, type GameState } from "../constants/gameStates";
 
 type Props = {
     gameState: GameState;
@@ -15,19 +15,19 @@ const PlayButton = ({
     isPlaying
 }: Props) => {
     const disabled =
-        gameState === GameState.ANSWERING && (isBuffering || isPlaying);
+        gameState === GAME_STATES.ANSWERING && (isBuffering || isPlaying);
 
     const base =
         "disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer flex font-medium items-center justify-center py-4 rounded-lg shadow-md space-x-3 text-white w-full";
     const classes =
-        gameState === GameState.RESULT
+        gameState === GAME_STATES.RESULT
             ? `bg-gray-900 hover:bg-gray-800 ${base}`
             : `bg-indigo-600 hover:bg-indigo-700 ${base}`;
 
     let icon = <Play size={24} />;
     let text = "Play one second";
 
-    if (gameState === GameState.RESULT) {
+    if (gameState === GAME_STATES.RESULT) {
         icon = <CircleStop size={24} />;
         text = "Stop playing";
     } else if (isBuffering) {

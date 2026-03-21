@@ -5,18 +5,21 @@ import ReactPlayer from "react-player";
 import ResultView from "./components/ResultView";
 import Settings from "./components/Settings";
 import type { Song } from "./types";
-import { GameState, Outcome } from "./types";
+import { GAME_STATES, type GameState } from "./constants/gameStates";
 import { getRandomSong, getRandomStartTime } from "./utils";
+import { OUTCOMES, type Outcome } from "./constants/outcomes";
 import { useRef, useState } from "react";
 
 const App = () => {
     const [answer, setAnswer] = useState("");
     const [currentSong, setCurrentSong] = useState<Song>(() => getRandomSong());
-    const [gameState, setGameState] = useState<GameState>(GameState.ANSWERING);
+    const [gameState, setGameState] = useState<GameState>(
+        GAME_STATES.ANSWERING
+    );
     const [isBuffering, setBuffering] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
     const [isRandomMode, setRandomMode] = useState(false);
-    const [outcome, setOutcome] = useState<Outcome>(Outcome.INCORRECT);
+    const [outcome, setOutcome] = useState<Outcome>(OUTCOMES.INCORRECT);
     const [showSettings, setShowSettings] = useState(false);
     const [startTime, setStartTime] = useState(0);
     const [streak, setStreak] = useState(0);
@@ -31,14 +34,14 @@ const App = () => {
     const handleNext = () => {
         setAnswer("");
         setCurrentSong(getRandomSong());
-        setGameState(GameState.ANSWERING);
-        setOutcome(Outcome.INCORRECT);
+        setGameState(GAME_STATES.ANSWERING);
+        setOutcome(OUTCOMES.INCORRECT);
         setPlaying(false);
         setStartTime(0);
     };
 
     const handlePause = () => {
-        if (gameState === GameState.ANSWERING) {
+        if (gameState === GAME_STATES.ANSWERING) {
             if (playerRef.current) {
                 playerRef.current.currentTime = startTime;
             }
@@ -46,7 +49,7 @@ const App = () => {
     };
 
     const handlePlay = () => {
-        if (gameState === GameState.ANSWERING) {
+        if (gameState === GAME_STATES.ANSWERING) {
             setBuffering(true);
 
             if (playerRef.current) {
@@ -80,7 +83,7 @@ const App = () => {
     const handlePlaying = () => {
         setBuffering(false);
 
-        if (gameState === GameState.ANSWERING) {
+        if (gameState === GAME_STATES.ANSWERING) {
             setTimeout(() => {
                 setPlaying(false);
             }, 1000);
@@ -93,17 +96,17 @@ const App = () => {
             !giveUp;
 
         if (correct) {
-            setOutcome(Outcome.CORRECT);
+            setOutcome(OUTCOMES.CORRECT);
             setStreak((s) => s + 1);
         } else {
             if (giveUp) {
-                setOutcome(Outcome.GIVE_UP);
+                setOutcome(OUTCOMES.GIVE_UP);
             }
 
             setStreak(0);
         }
 
-        setGameState(GameState.RESULT);
+        setGameState(GAME_STATES.RESULT);
         setPlaying(true);
     };
 
@@ -126,7 +129,7 @@ const App = () => {
                         isRandomMode={isRandomMode}
                     />
                 )}
-                {(gameState !== GameState.RESULT || isPlaying) && (
+                {(gameState !== GAME_STATES.RESULT || isPlaying) && (
                     <PlayButton
                         gameState={gameState}
                         handlePlay={handlePlay}
@@ -134,7 +137,7 @@ const App = () => {
                         isPlaying={isPlaying}
                     />
                 )}
-                {gameState === GameState.ANSWERING && (
+                {gameState === GAME_STATES.ANSWERING && (
                     <AnsweringView
                         answer={answer}
                         handleSubmit={handleSubmit}
@@ -142,7 +145,7 @@ const App = () => {
                         setAnswer={setAnswer}
                     />
                 )}
-                {gameState === GameState.RESULT && (
+                {gameState === GAME_STATES.RESULT && (
                     <ResultView
                         currentSong={currentSong}
                         handleNext={handleNext}

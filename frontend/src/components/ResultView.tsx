@@ -1,7 +1,7 @@
 import type { Song } from "../types";
 import { albumNameCoverMap } from "../constants/albumNameCoverMap";
 import { CheckCircle, SkipForward, XCircle } from "lucide-react";
-import { Outcome } from "../types";
+import { OUTCOMES, type Outcome } from "../constants/outcomes";
 import { useState } from "react";
 
 type Props = {
@@ -13,11 +13,11 @@ type Props = {
 const ResultView = ({ currentSong, handleNext, outcome }: Props) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const isCorrect = outcome === Outcome.CORRECT;
+    const isCorrect = outcome === OUTCOMES.CORRECT;
     const src = albumNameCoverMap[currentSong.album];
 
     const getMessage = () => {
-        if (outcome === Outcome.GIVE_UP) {
+        if (outcome === OUTCOMES.GIVE_UP) {
             return "The answer is:";
         } else if (isCorrect) {
             return "Correct! The answer is:";
