@@ -5,6 +5,7 @@ type Props = {
     gameState: GameState;
     handlePlay: () => void;
     isBuffering: boolean;
+    isMetadataLoading: boolean;
     isPlaying: boolean;
 };
 
@@ -12,10 +13,12 @@ const PlayButton = ({
     gameState,
     handlePlay,
     isBuffering,
+    isMetadataLoading,
     isPlaying
 }: Props) => {
     const disabled =
-        gameState === GAME_STATES.ANSWERING && (isBuffering || isPlaying);
+        gameState === GAME_STATES.ANSWERING &&
+        (isBuffering || isMetadataLoading || isPlaying);
 
     const base =
         "disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer flex font-medium items-center justify-center py-4 rounded-lg shadow-md space-x-3 text-white w-full";
@@ -30,7 +33,7 @@ const PlayButton = ({
     if (gameState === GAME_STATES.RESULT) {
         icon = <CircleStop size={24} />;
         text = "Stop playing";
-    } else if (isBuffering) {
+    } else if (isBuffering || isMetadataLoading) {
         icon = (
             <Loader
                 className="[animation-duration:2s] animate-spin"

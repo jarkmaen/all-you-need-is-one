@@ -17,6 +17,7 @@ const App = () => {
         GAME_STATES.ANSWERING
     );
     const [isBuffering, setBuffering] = useState(false);
+    const [isMetadataLoading, setMetadataLoading] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
     const [isRandomMode, setRandomMode] = useState(false);
     const [outcome, setOutcome] = useState<Outcome>(OUTCOMES.INCORRECT);
@@ -35,6 +36,7 @@ const App = () => {
         setAnswer("");
         setCurrentSong(getRandomSong());
         setGameState(GAME_STATES.ANSWERING);
+        setMetadataLoading(true);
         setOutcome(OUTCOMES.INCORRECT);
         setPlaying(false);
         setStartTime(0);
@@ -114,6 +116,7 @@ const App = () => {
         <div className="flex justify-center lg:items-center min-h-screen">
             <div className="bg-white lg:rounded-xl lg:shadow-xl max-w-xl p-6 space-y-4 w-full">
                 <ReactPlayer
+                    onDurationChange={() => setMetadataLoading(false)}
                     onPause={handlePause}
                     onPlaying={handlePlaying}
                     playing={isPlaying}
@@ -134,6 +137,7 @@ const App = () => {
                         gameState={gameState}
                         handlePlay={handlePlay}
                         isBuffering={isBuffering}
+                        isMetadataLoading={isMetadataLoading}
                         isPlaying={isPlaying}
                     />
                 )}
